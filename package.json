@@ -16,12 +16,15 @@
   "author": "sseom & sharry",
   "license": "ISC",
   "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
     "browser-sync": "^2.18.5",
     "del": "^2.2.1",
     "gulp": "^3.9.1",
-    "gulp-compile-handlebars": "^0.6.1",
     "gulp-autoprefixer": "^3.1.1",
+    "gulp-babel": "^7.0.0",
     "gulp-combine-mq": "^0.4.0",
+    "gulp-compile-handlebars": "^0.6.1",
     "gulp-concat": "^2.6.0",
     "gulp-csscomb": "^3.0.8",
     "gulp-csso": "^2.0.0",
@@ -31,7 +34,9 @@
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^2.3.2",
     "gulp-sourcemaps": "^1.6.0",
-    "gulp-uglify": "^2.0.0",
     "gulp-util": "^3.0.7"
+  },
+  "dependencies": {
+    "gulp-uglify": "^3.0.0"
   }
 }

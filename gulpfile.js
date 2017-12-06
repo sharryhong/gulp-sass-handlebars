@@ -6,13 +6,14 @@ const config = require('./gulp.config');
 const del = require('del');
 const env = require('gulp-util').env;
 const handlebars = require('gulp-compile-handlebars');
+const babel = require('gulp-babel');
 
 // gulp-if 모듈을 로드 : 조건에 따른 업무 처리
 const g_if = require('gulp-if');
 
 // Gulp 유틸리티 : 플러그인 용 유틸리티 함수 https://www.npmjs.com/package/gulp-util
 // g_util.log('massage');
-const g_util = require('gulp-util');
+const gutil = require('gulp-util');
 
 // gulp-rename : 리네임 => 왜? 압축후 .min 붙이려고
 const rename = require('gulp-rename');
@@ -21,7 +22,7 @@ const rename = require('gulp-rename');
 // ------------- BROWSER 동기화
 // 서버 환경 구성
 // 서버를 띄워 놓고 감시하는 파일을 수정하면 자동으로 브라우저를 리로드.
-const  browserSync = require('browser-sync').create();
+const browserSync = require('browser-sync').create();
 
 // ------------- HTML
 const htmlmin = require('gulp-htmlmin');
@@ -46,6 +47,9 @@ const g_csso = require('gulp-csso');
 const concat = require('gulp-concat');
 // Javascript 압축
 const uglify = require('gulp-uglify');
+// let uglifyes = require('uglify-es');
+// let composer = require('gulp-uglify/composer');
+// let uglify = composer(uglifyes, console);
 
 // ------------- IMAGE
 // gulp-imagemin : 이미지 포멧(`GIF`, `JPG`, `PNG`, `SVG`) 최적화
@@ -143,8 +147,10 @@ gulp.task('compile:js', ['clean'], function() {
   return gulp.src( config.paths.js.src )
              .pipe( concat('all.js') )
              .pipe( gulp.dest( config.paths.js.dest ) )
-             // 압축 후 접미사 '.min' 리네임
-             .pipe( uglify() )
+             .pipe(babel({
+                presets: ['env']
+              }))
+             .pipe(uglify())
              .pipe( rename({ suffix: '.min' }) )
              .pipe( gulp.dest( config.paths.js.dest ) );
 });
