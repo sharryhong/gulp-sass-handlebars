@@ -57,7 +57,7 @@ const hbsConfig = {
   watchers: [
     {
       match: ['./src/**/*.hbs'],
-      tasks: ['html']
+      tasks: ['hbs']
     }
   ]
 };
@@ -80,6 +80,9 @@ gulp.task('clean', () => del(config.dest));
 
 // 관찰(Watch) 업무
 gulp.task('watch', function() {
+    hbsConfig.watchers.forEach(item => {
+      gulp.watch(item.match, item.tasks);
+    });
     // gulp.watch( 이곳이 변경이 생길때 마다, ['이 일을 수행해']);
     gulp.watch(config.paths.html.src, ['compile:html']);
     gulp.watch(config.paths.sass.src, ['compile:css']);
@@ -96,7 +99,7 @@ gulp.task('server', function() {
 });
 
 // Sass 업무 등록  : Sass → CSS 업무
-gulp.task('compile:css', function() {
+gulp.task('compile:css', ['clean'], function() {
     return gulp.src(config.paths.sass.src)
                .pipe( g_if(config.paths.sass.sourcemaps.use, sourcemaps.init() ) )
                .pipe( sass( config.paths.sass.options ).on('error', sass.logError) )
@@ -136,7 +139,7 @@ gulp.task('hbs', ['clean'], () => {
 });
 
 // js
-gulp.task('compile:js', function() {
+gulp.task('compile:js', ['clean'], function() {
   return gulp.src( config.paths.js.src )
              .pipe( concat('all.js') )
              .pipe( gulp.dest( config.paths.js.dest ) )
@@ -147,14 +150,14 @@ gulp.task('compile:js', function() {
 });
 
 // img
-gulp.task('images', function() {
+gulp.task('images', ['clean'], function() {
   return gulp.src( config.paths.images.src )
              .pipe( imagemin() )
              .pipe( gulp.dest( config.paths.images.dest ) );
 });
 
 // html
-gulp.task('compile:html', function() {
+gulp.task('compile:html', ['clean'], function() {
   return gulp.src( config.paths.html.src )
              .pipe( htmlmin({collapseWhitespace: true}) )
              .pipe( gulp.dest( config.paths.html.dest ) );

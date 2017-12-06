@@ -1,24 +1,8 @@
-/**
- * -------------------------------------
- * 디렉토리 정의 : 파일경로
- * -------------------------------------
- */
-
 // @private project {}
 const project = {
   'source': './src/',
   'destination': './dist/'
 };
-
-/**
- * -------------------------------------
- * src : 작업파일
-    - project.source + '별별/별.html' ==> 모든 html확장자를 가진 파일
- * dest : 컴파일될 파일
-    - project.destination   ==> 그냥 destination 경로 폴더에 컴파일
-    - project.destination + '폴더명' ==> 폴더명안에 컴파일됨
- * -------------------------------------
- */
 
 const paths = {
   'html':  {
