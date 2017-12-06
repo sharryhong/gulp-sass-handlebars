@@ -1,0 +1,37 @@
+{
+  "name": "smart-working",
+  "version": "1.0.0",
+  "description": "Sass, JS bundle Project Startkit with Gulp",
+  "main": "index.js",
+  "keywords": [
+    "sass",
+    "gulp",
+    "handlebars"
+  ],
+  "scripts": {
+    "prestart": "npm install",
+    "start": "gulp --dev",
+    "build": "gulp"
+  },
+  "author": "sseom & sharry",
+  "license": "ISC",
+  "devDependencies": {
+    "browser-sync": "^2.18.5",
+    "del": "^2.2.1",
+    "gulp": "^3.9.1",
+    "gulp-compile-handlebars": "^0.6.1",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-combine-mq": "^0.4.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-csscomb": "^3.0.8",
+    "gulp-csso": "^2.0.0",
+    "gulp-htmlmin": "^3.0.0",
+    "gulp-if": "^2.0.1",
+    "gulp-imagemin": "^3.0.3",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.3.2",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-uglify": "^2.0.0",
+    "gulp-util": "^3.0.7"
+  }
+}
